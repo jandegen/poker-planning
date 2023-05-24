@@ -2,7 +2,7 @@ version: '3'
 
 services:
   frontend:
-    image: 'poker-client:latest'
+    image: container.die-degens.eu/degen-cloud-computing/scrum-poker-planning-deployment:frontend-main
     restart: unless-stopped
     ports:
       - 8080:80
@@ -20,7 +20,7 @@ services:
       - "traefik.http.routers.poker-planning-frontend.middlewares=poker-planning-frontend"
 
   backend:
-    image: poker-server:latest
+    image: container.die-degens.eu/degen-cloud-computing/scrum-poker-planning-deployment:backend-main
     restart: unless-stopped
     environment:
       - APP_APPLICATION__BASE_URL=poker-planning.die-degens.eu/api
