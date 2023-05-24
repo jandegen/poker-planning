@@ -41,8 +41,10 @@ build-docker-backend:
         - echo "Pushing Docker Image..."
         - docker push $CCI_IMAGE_BACKEND
 
-deploy-portainer-stack:
+deploy-portainer-stack:    
     stage: deploy    
     image: docker:latest    
+    environment:
+        name: production
     script:
         - echo "Triggering deployment webhook..."
