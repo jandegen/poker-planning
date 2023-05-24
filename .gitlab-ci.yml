@@ -13,8 +13,6 @@ build-docker-frontend:
         - docker        
     services:
         - docker:dind
-    only:
-    - /^docker/.*$/
     script:
         - cd client/
         - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN ${CI_REGISTRY}
@@ -32,8 +30,6 @@ build-docker-backend:
         - docker        
     services:
         - docker:dind
-    only:
-    - /^docker/.*$/
     script:
         - cd server/
         - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN ${CI_REGISTRY}
