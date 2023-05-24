@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  frontend:
+    image: 'poker-client:latest'
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    labels: 
+      - "traefik.enable=true"
+      # Remove path prefix
+      - "traefik.http.middlewares.poker-planning-frontend.stripprefix.prefixes=/ui"       
+      #  Main
+      - "traefik.http.routers.poker-planning-frontend.rule=Host(`poker-planning.die-degens.eu`) && PathPrefix(`/ui`)"
+      - "traefik.http.routers.poker-planning-frontend.entrypoints=websecure"
+      - "traefik.http.routers.poker-planning-frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.poker-planning-frontend.middlewares=gitlab-headers"
+      - "traefik.http.routers.poker-planning-frontend.service=poker-planning-frontend"
+      - "traefik.http.services.poker-planning-frontend.loadbalancer.server.port=80"
+      - "traefik.http.routers.poker-planning-frontend.middlewares=poker-planning-frontend"
+
+  backend:
+    image: poker-server:latest
+    restart: unless-stopped
+    environment:
+      - APP_APPLICATION__BASE_URL=poker-planning.die-degens.eu/api
+    labels:        
+      - "traefik.enable=true"
+      # Remove path prefix
+      - "traefik.http.middlewares.poker-planning-backend.stripprefix.prefixes=/api"       
+      #  Main
+      - "traefik.http.routers.poker-planning-backend.rule=Host(`poker-planning.die-degens.eu`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.poker-planning-backend.entrypoints=websecure"
+      - "traefik.http.routers.poker-planning-backend.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.poker-planning-backend.middlewares=gitlab-headers"
+      - "traefik.http.routers.poker-planning-backend.service=poker-planning"
+      - "traefik.http.services.poker-planning-backend.loadbalancer.server.port=80"
+      - "traefik.http.routers.poker-planning-backend.middlewares=poker-planning-backend"
+
+
