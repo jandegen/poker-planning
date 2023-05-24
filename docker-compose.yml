@@ -15,7 +15,7 @@ services:
       - "traefik.http.routers.poker-planning-frontend.middlewares=gitlab-headers"
       - "traefik.http.routers.poker-planning-frontend.service=poker-planning-frontend"
       - "traefik.http.services.poker-planning-frontend.loadbalancer.server.port=80"
-      - "traefik.http.routers.poker-planning-frontend.middlewares=poker-planning-frontend"
+      #- "traefik.http.routers.poker-planning-frontend.middlewares=poker-planning-frontend"
 
   backend:
     image: container.die-degens.eu/degen-cloud-computing/scrum-poker-planning-deployment:backend-main
@@ -31,7 +31,7 @@ services:
       - "traefik.http.routers.poker-planning-backend.entrypoints=websecure"
       - "traefik.http.routers.poker-planning-backend.tls.certresolver=letsencrypt"
       - "traefik.http.routers.poker-planning-backend.middlewares=gitlab-headers"
-      - "traefik.http.routers.poker-planning-backend.service=poker-planning"
+      - "traefik.http.routers.poker-planning-backend.service=poker-planning-backend"
       - "traefik.http.services.poker-planning-backend.loadbalancer.server.port=80"
       - "traefik.http.routers.poker-planning-backend.middlewares=poker-planning-backend"
 

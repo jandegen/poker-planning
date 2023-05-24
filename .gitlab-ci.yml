@@ -1,6 +1,6 @@
 stages:
     - build
-
+    - deploy
 variables:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_TLS_CERTDIR: ""
@@ -40,3 +40,7 @@ build-docker-backend:
         - docker build -t $CCI_IMAGE_BACKEND .
         - echo "Pushing Docker Image..."
         - docker push $CCI_IMAGE_BACKEND
+
+deploy-portainer-stack:
+    stage: deploy
+    
