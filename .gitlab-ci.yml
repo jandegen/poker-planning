@@ -20,7 +20,7 @@ build-docker-frontend:
         - docker info
         - CCI_IMAGE_FRONTEND=${CI_REGISTRY}/${CI_PROJECT_PATH}:frontend-$(echo ${CI_COMMIT_REF_NAME} | cut -d'/' -f 2)
         - echo "Building Docker Image $CCI_IMAGE_FRONTEND ..."
-        - docker build -t $CCI_IMAGE_FRONTEND --build-arg REACT_APP_GRAPHQL_ENDPOINT=$APP_GRAPHQL_ENDPOINT --build-arg REACT_APP_GRAPHQL_WS_ENDPOINT=$APP_GRAPHQL_WS_ENDPOINT .
+        - docker build -t $CCI_IMAGE_FRONTEND .
         - echo "Pushing Docker Image..."
         - docker push $CCI_IMAGE_FRONTEND
 build-docker-backend:

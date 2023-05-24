@@ -21,9 +21,6 @@ CMD [ "npm", "start" ]
 
 FROM development AS build
 
-ARG REACT_APP_GRAPHQL_ENDPOINT
-ARG REACT_APP_GRAPHQL_WS_ENDPOINT
-
 RUN npm run lint:fix
 RUN npm run build
 

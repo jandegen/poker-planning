@@ -4,8 +4,6 @@ services:
   frontend:
     image: container.die-degens.eu/degen-cloud-computing/scrum-poker-planning-deployment:frontend-main
     restart: unless-stopped
-    ports:
-      - 8080:80
     labels: 
       - "traefik.enable=true"
       # Remove path prefix
