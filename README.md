@@ -1,8 +1,10 @@
-# PokerPlanning.org 🃏
+# PokerPlanning.org Fork🃏
 
 The main mission of this project is to make **online planning poker** super easy and enjoyable 🥰. And also free to use for people from all over the world 🌍🌎🌏!
 
-Mono repository for scrum poker tool [PokerPlanning.org](https://pokerplanning.org/)
+Mono repository for scrum poker tool [PokerPlanning.org](https://poker-planning.die-degens.eu)
+
+This repository is maintained private and online synced to GitHub.
 
 ## Fancy technologies 🌈
 
@@ -20,7 +22,7 @@ Mono repository for scrum poker tool [PokerPlanning.org](https://pokerplanning.o
 ### Setup environment
 
 ```sh
-git clone https://github.com/ModPhoenix/poker-planning.git
+git clone https://github.com/jandegen/poker-planning.git
 cd poker-planning
 
 cargo install cargo-watch

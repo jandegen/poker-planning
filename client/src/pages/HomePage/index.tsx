@@ -64,7 +64,7 @@ export function HomePage(): ReactElement {
                     fontWeight: 300,
                   }}
                 >
-                  PokerPlanning.org is an open-source tool for easy online
+                  This is a fork of PokerPlanning.org is an open-source tool for easy online
                   estimation in story points for teams around the world.
                   Planning poker, also called Scrum poker, is a consensus-based,
                   gamified technique for estimating, mostly used for timeboxing
@@ -87,7 +87,7 @@ export function HomePage(): ReactElement {
                 </Grid>
                 <Grid item xs={12} sm={6} lg="auto">
                   <Button
-                    href="https://github.com/ModPhoenix/poker-planning"
+                    href="https://github.com/jandegen/poker-planning"
                     startIcon={<GitHubIcon />}
                     variant="outlined"
                     size="large"

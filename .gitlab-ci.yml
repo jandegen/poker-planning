@@ -48,3 +48,4 @@ deploy-portainer-stack:
         name: production
     script:
         - echo "Triggering deployment webhook..."
+        - curl -X POST ${PORTAINER_WEBHOOK}
