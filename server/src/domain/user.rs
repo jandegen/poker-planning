@@ -8,7 +8,6 @@ use crate::types::EntityId;
 pub struct UserInput {
     pub id: EntityId,
     pub username: String,
-    pub role: String,
 }
 
 #[derive(Clone, Debug, SimpleObject)]
@@ -32,6 +31,6 @@ impl From<UserInput> for User {
         User {
             id: input.id,
             username: input.username,
-        }
+        }   
     }
 }

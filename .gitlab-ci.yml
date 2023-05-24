@@ -43,7 +43,7 @@ build-docker-backend:
 
 deploy-portainer-stack:    
     stage: deploy    
-    image: docker:latest    
+    image: alpine   
     environment:
         name: production
     script:
