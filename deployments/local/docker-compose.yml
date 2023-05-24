@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  frontend:
+    image: poker-client:latest
+    restart: unless-stopped
+    ports:
+      - 8080:80
+
+  backend:
+    image: poker-server:latest
+    restart: unless-stopped
+    environment:
+      - APP_APPLICATION__BASE_URL=backend:8000
+
+

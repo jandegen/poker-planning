@@ -22,7 +22,6 @@ mod types;
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
-    println!("Hello, world! This is the server for pokerplanning.org");
 
     let env = Env::default().filter_or("RUST_LOG", "actix_web=trace");
     env_logger::init_from_env(env);
