@@ -1,6 +1,7 @@
 {
   "name": "poker-planning",
   "version": "0.1.0",
+  "homepage": "/ui",
   "private": true,
   "engines": {
     "node": "16",
