@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  frontend:
+    image: container.die-degens.eu/degen-cloud-computing/scrum-poker-planning-deployment:frontend-main
+    restart: unless-stopped
+    labels: 
+      - "traefik.enable=true"
+      # Remove path prefix
+      - "traefik.http.middlewares.strip-poker-planning-frontend.stripprefix.prefixes=/ui"       
+      #  Main
+      - "traefik.http.routers.poker-planning-frontend.rule=Host(`poker-planning.die-degens.eu`) && PathPrefix(${CI_MERGE_REQUEST_IID}/ui)"
+      - "traefik.http.routers.poker-planning-frontend.entrypoints=websecure"
+      - "traefik.http.routers.poker-planning-frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.poker-planning-frontend.service=poker-planning-frontend"
+      - "traefik.http.services.poker-planning-frontend.loadbalancer.server.port=80"
+      - "traefik.http.routers.poker-planning-frontend.middlewares=strip-poker-planning-frontend"
+    networks:
+      - web
+
+  backend:
+    image: container.die-degens.eu/degen-cloud-computing/scrum-poker-planning-deployment:backend-main
+    restart: unless-stopped
+    environment:
+      - APP_APPLICATION__BASE_URL=poker-planning.die-degens.eu/api
+    labels:        
+      - "traefik.enable=true"
+      # Remove path prefix
+      - "traefik.http.middlewares.strip-poker-planning-backend.stripprefix.prefixes=/api"       
+      #  Main
+      - "traefik.http.routers.poker-planning-backend.rule=Host(`poker-planning.die-degens.eu`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.poker-planning-backend.entrypoints=websecure"
+      - "traefik.http.routers.poker-planning-backend.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.poker-planning-backend.service=poker-planning-backend"
+      - "traefik.http.services.poker-planning-backend.loadbalancer.server.port=8000"
+      - "traefik.http.routers.poker-planning-backend.middlewares=strip-poker-planning-backend"
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
+    external: true
