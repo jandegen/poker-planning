@@ -44,8 +44,11 @@ build-docker-backend:
 deploy-portainer-stack:    
     stage: deploy    
     image: alpine   
+    before_script:
+        - apk add --update curl
     environment:
         name: production
     script:
         - echo "Triggering deployment webhook..."
         - curl -X POST ${PORTAINER_WEBHOOK}
+        - echo "Application successfully deployed."
