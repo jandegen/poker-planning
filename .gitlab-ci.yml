@@ -51,3 +51,4 @@ deploy-portainer-stack:
     script:
         - echo "Triggering deployment webhook..."
         - curl -X POST ${PORTAINER_WEBHOOK}
+        - echo "Application successfully deployed."
